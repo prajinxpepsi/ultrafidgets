@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ultra Fidgets Login</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #00ffff, #8a2be2);
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ultra Fidgets</h1>
+  <p>Login required to access the secret page 🕵️</p>
+  <button onclick="login()">Login</button>
+
+  <script>
+    function login() {
+      const password = prompt("Enter password:");
+
+      // You can change this to whatever you want
+      const correctPassword = "ultra123";
+
+      if (password === correctPassword) {
+        alert("Access granted. Welcome to the secret fidget stash! 🛒");
+        window.location.href = "shop.html"; // or whatever page you want
+      } else {
+        alert("Access denied. Wrong password.");
+      }
+    }
+  </script>
+</body>
+</html>
