@@ -1,81 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra Fidgets</title>
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Fidgets</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #00ffff, #8a2be2);
-            color: white;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            text-align: center;
-        }
+    /* Body Styling */
+    body {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top left, #00ffff, #8a2be2 70%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
 
-        h1.title {
-            font-size: 64px;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px #00000050;
-        }
+    /* Animated Gradient Glow */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 180deg at 50% 50%, #00ffff, #8a2be2, #ff00ff, #00ffff);
+      animation: rotate 15s linear infinite;
+      z-index: 0;
+      opacity: 0.3;
+    }
 
-        h2.subtitle {
-            font-size: 28px;
-            font-weight: normal;
-            max-width: 800px;
-            margin-bottom: 60px;
-        }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
 
-        .nav-bar {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+    /* Main Content */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      padding: 40px 20px;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+    }
 
-        .nav-bar a {
-            text-decoration: none;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.3);
-            padding: 12px 24px;
-            border-radius: 8px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
+    h1.title {
+      font-size: 72px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+    }
 
-        .nav-bar a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
+    h2.subtitle {
+      font-size: 22px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 50px;
+      line-height: 1.6;
+    }
 
-        hr {
-            width: 80%;
-            border: 1px solid rgba(255,255,255,0.4);
-            margin: 20px 0;
-        }
-    </style>
+    hr {
+      width: 60%;
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      margin: 20px auto 40px;
+    }
+
+    .nav-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-bar a {
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 14px 28px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-bar a:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #00ffff, #8a2be2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    @media (max-width: 600px) {
+      h1.title { font-size: 48px; }
+      h2.subtitle { font-size: 18px; }
+      .nav-bar a { padding: 12px 20px; font-size: 14px; }
+    }
+  </style>
 </head>
 <body>
+  <main>
     <h1 class="title">Ultra Fidgets</h1>
-    <hr>
-    <h2 class="subtitle">Hey, we're Ultra Fidgets! We're a small business that sells fidget toys and other 3D printed items!</h2>
-    
+    <hr />
+    <h2 class="subtitle">
+      Hey, we're <strong>Ultra Fidgets</strong> — a small business that creates 
+      fun, high-quality fidget toys and other custom 3D printed items to keep your hands happy!
+    </h2>
+
     <div class="nav-bar">
-        <a href="contact.html">Contact Us</a>
-        <a href="shop.html">Shop</a>
-        <a href="#">Coming Soon</a>
-        <a href="#">Coming Soon</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="shop.html">Shop</a>
+      <a href="#">Coming Soon</a>
+      <a href="#">Coming Soon</a>
     </div>
+  </main>
+
+  <footer>© 2025 Ultra Fidgets. All rights reserved.</footer>
 </body>
 </html>
