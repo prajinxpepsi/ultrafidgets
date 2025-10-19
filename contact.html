@@ -1,8 +1,283 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <center>
-    <h1>This Page Will Be Coming Soon</h1>
-    </center>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Ultra Fidgets</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Body Styling (same vibe) */
+    body {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top left, #00ffff, #8a2be2 70%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: conic-gradient(from 180deg at 50% 50%, #00ffff, #8a2be2, #ff00ff, #00ffff);
+      animation: rotate 15s linear infinite;
+      z-index: 0; opacity: 0.3;
+    }
+    @keyframes rotate { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
+
+    /* Main glass card */
+    main {
+      position: relative; z-index: 1;
+      max-width: 900px; width: 92%;
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    h1.title {
+      font-size: 56px; margin-bottom: 10px;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+    }
+    h2.subtitle {
+      font-size: 20px; font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 30px; line-height: 1.6;
+    }
+
+    hr {
+      width: 60%; border: none; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      margin: 20px auto 30px;
+    }
+
+    .nav-bar {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 26px;
+    }
+    .nav-bar a {
+      text-decoration: none; color: white; font-weight: 600; letter-spacing: 1px;
+      padding: 12px 22px; border-radius: 30px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nav-bar a:hover {
+      transform: translateY(-4px);
+      background: linear-gradient(135deg, #00ffff, #8a2be2);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    /* Form layout */
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      text-align: left;
+    }
+    .full { grid-column: 1 / -1; }
+
+    label {
+      display: block; margin-bottom: 8px;
+      font-size: 14px; letter-spacing: 0.3px;
+      color: rgba(255,255,255,0.9);
+    }
+    input, textarea, select, button {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-radius: 14px;
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.55); }
+    textarea { min-height: 140px; resize: vertical; }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #00ffff;
+      box-shadow: 0 0 0 4px rgba(0, 255, 255, 0.15);
+    }
+
+    .hint { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+
+    /* Submit */
+    .actions {
+      display: flex; gap: 12px; align-items: center; justify-content: flex-start;
+    }
+    button[type="submit"] {
+      cursor: pointer; font-weight: 700; letter-spacing: 0.6px;
+      background: linear-gradient(135deg, #00ffff, #8a2be2);
+      border: none; box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+    }
+    button[disabled] { opacity: 0.7; cursor: not-allowed; }
+
+    /* Status */
+    .status {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+    }
+    .status.show { display: block; }
+    .status.success { border-color: rgba(0,255,179,0.5); }
+    .status.error { border-color: rgba(255,77,109,0.6); }
+
+    footer {
+      position: absolute; bottom: 10px;
+      font-size: 14px; color: rgba(255,255,255,0.6);
+    }
+
+    @media (max-width: 720px) {
+      form { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      h1.title { font-size: 42px; }
+      h2.subtitle { font-size: 18px; }
+      .nav-bar a { padding: 12px 20px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 class="title">Ultra Fidgets</h1>
+    <hr />
+    <h2 class="subtitle">Got a question, custom idea, or wholesale inquiry? Drop us a note!</h2>
+
+    <div class="nav-bar" aria-label="Site">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="#">Coming Soon</a>
+      <a href="#">Coming Soon</a>
+    </div>
+
+    <!-- Contact Form (Web3Forms) -->
+    <form id="contact-form" novalidate>
+      <!-- Required by Web3Forms -->
+      <input type="hidden" name="access_key" value="7e32ef14-9dfa-452f-bf3b-608541d9e464" />
+      <!-- Optional: customize subject and from_name on the email you receive -->
+      <input type="hidden" name="subject" value="New message from Ultra Fidgets contact form" />
+      <input type="hidden" name="from_name" value="Ultra Fidgets Website" />
+      <!-- Honeypot (spam protection) -->
+      <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; opacity:0;" />
+
+      <div>
+        <label for="name">Your Name *</label>
+        <input id="name" name="name" type="text" placeholder="e.g., Alex Doe" required aria-required="true" />
+      </div>
+
+      <div>
+        <label for="email">Email *</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+      </div>
+
+      <div>
+        <label for="topic">Topic</label>
+        <select id="topic" name="topic">
+          <option value="General">General</option>
+          <option value="Order / Shipping">Order / Shipping</option>
+          <option value="Custom 3D Print">Custom 3D Print</option>
+          <option value="Wholesale">Wholesale</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="phone">Phone (optional)</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="(555) 555-5555"/>
+      </div>
+
+      <div class="full">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" placeholder="Tell us what you have in mind..." required aria-required="true"></textarea>
+        <p class="hint">We usually respond within 1–2 business days.</p>
+      </div>
+
+      <div class="full actions">
+        <button id="submit-btn" type="submit">Send Message</button>
+        <div id="form-status" class="status" role="status" aria-live="polite"></div>
+      </div>
+    </form>
+
+    <p class="hint" style="margin-top: 14px;">
+      By submitting, you agree to receive a reply from our team. We respect your privacy and never share your info.
+    </p>
+  </main>
+
+  <footer>© 2025 Ultra Fidgets. All rights reserved.</footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById('contact-form');
+      const statusEl = document.getElementById('form-status');
+      const submitBtn = document.getElementById('submit-btn');
+
+      function setStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.className = 'status show ' + (type || '');
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // very basic frontend validation
+        if (!form.name.value.trim() || !form.email.value.trim() || !form.message.value.trim()) {
+          setStatus('Please fill out the required fields.', 'error');
+          return;
+        }
+        if (form.botcheck.checked) {
+          // silently ignore bots
+          return;
+        }
+
+        submitBtn.disabled = true;
+        setStatus('Sending…', '');
+
+        try {
+          const formData = new FormData(form);
+
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+          });
+
+          const data = await res.json();
+
+          if (res.ok && (data.success || data.message === "Submission successful")) {
+            setStatus('Thanks! Your message has been sent. ✨', 'success');
+            form.reset();
+          } else {
+            console.error(data);
+            setStatus(data.message || 'Something went wrong. Please try again.', 'error');
+          }
+        } catch (err) {
+          console.error(err);
+          setStatus('Network error. Please check your connection and try again.', 'error');
+        } finally {
+          submitBtn.disabled = false;
+        }
+      }, { passive: false });
+    })();
+  </script>
+
+  <!--
+    Notes:
+    1) Replace YOUR_WEB3FORMS_ACCESS_KEY with your real access key.
+    2) If you prefer a redirect after success, you can add:
+       <input type="hidden" name="redirect" value="https://yourdomain.com/thank-you.html" />
+       and remove the JS fetch (or keep both; the POST action will handle redirect without JS).
+    3) To enable hCaptcha with Web3Forms, add your sitekey and widget per their docs.
+  -->
+</body>
 </html>
